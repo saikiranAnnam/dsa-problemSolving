@@ -1,13 +1,12 @@
 #include<iostream>
-#include<vector>
+#include<stack>
 using namespace std;
 
 int main()
 {
-    vector<int> v1(3,10);
-    for(int i=0; i<5; i++){
-        cout<<v1[i];
-    }
-    cout<<v1.empty();
+    stack< pair<char, int> > s;
+    s.push(make_pair(1,2));
+    s.push(make_pair(4,5));
+    cout << s.top().second;
 return 0;
 }

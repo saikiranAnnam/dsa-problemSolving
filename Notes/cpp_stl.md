@@ -152,6 +152,72 @@ It is a library of container classes, functions, algorithms, and iterators.
         v1.capacity() // 3
         v1.empty() // 0 - false
         ```
-3. **Lists**
+3. **Stack**
+    A stack is a non-primitive linear data structure.
+    It is an ordered list in which the addition of a new data item and deletion of the already existing data item is done from only one end known as the top of the stack (TOS). 
+    The element which is added in last will be first to be removed and the element which is inserted first will be removed in last. As all the deletion and insertion in a stack are done from the top of the stack, the last added element will be the first to be removed from the stack. 
+    That is the reason why stack is also called Last-in-First-out (LIFO).
 
+    *** syntax ***
+    stack<object_type> variable_name;
+    ```
+    stack<int> st;
+    stack.push(1);
+
+    stack<pair<int,int>> st;
+    st.push(make_pair(1,2));
+    st.top().second(); //2
+    ```
+
+    *** Stack functions ***
+    1. push() – to insert an element in the stack.
+    2. pop() – deletes the last element of the stack.
+    3. top() – returns the element at the top of the stack.
+    4. emplace() – to insert an element in the stack.
+    5. size() – returns the number of elements on the stack.
+    6. empty() – to check if the stack is empty or not.
+
+3. **Queue** 
+    A queue is a linear list of elements in which deletions can take place only at one end called the front, and insertions can take place only at the end called the rear. 
+    The queue is a First In First Out type of data structure (FIFO), the terms FRONT and REAR are used in describing a linear list only when it is implemented as a queue.
+
+    *** syntax ***
+    queue<object_type> variable_name; 
+
+    *** Functions ***
+    1. push() – to insert an element in the queue.
+    2. pop() – deletes the first element of the queue.
+    3. front() – returns a reference to the first element of the queue.
+    4. back() – returns a reference to the last element of the queue.
+    5. emplace() – to insert an element in the queue.
+    6. size() – returns the number of elements on the queue.
+    7. empty() – to check if the queue is empty or not.
+
+4. **Set** 
+    A set in STL is a container that stores unique elements in a particular order. Every operation on a set takes O(1) complexity in the average case and takes O(n) in the worst case.
+
+    *** NOTE : Set elements are unique and sorted in order ***
     
+    *** Syntax: ***
+    set<object_type> variable_name;
+    
+    Example:
+    set<int> s;
+    set<string> str;
+
+    *** Functions in set: ***
+    1. insert() – to insert an element in the set.
+    
+    ```
+    set<int> s;
+    s.insert(1);
+    s.insert(2);
+    ```
+    2. begin() – return an iterator pointing to the first element in the set.
+    3. end() – returns an iterator to the theoretical element after the last element.
+    4. count() – returns true or false based on whether the element is present in the set or not.
+    5. clear() – deletes all the elements in the set.
+    6. find() – to search an element in the set.
+    7. erase() – to delete a single element or elements between a particular range.
+    8. size() – returns the size of the set.
+    9. empty() – to check if the set is empty or not.
