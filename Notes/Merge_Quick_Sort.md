@@ -2,34 +2,29 @@
 
 MergeSort is another popular sorting algorithm that follows the divide-and-conquer approach. Here's the algorithm for MergeSort:
 
+Time complexity : O(nlogn)
+space complexity :O(n)
+
 ```plaintext
 Algorithm: MergeSort
 
-mergesort(array)
-    if length of array <= 1
-        return array
+mergesort(array, low, high)
+    if low == high : return
     
     # Split the array into two halves
     mid = length of array // 2
-    left_half = array[0:mid]
-    right_half = array[mid:]
+    mergesort(array, low, mid)
+    mergesort(array, low, mid)
+    merge(array, low, high, mid)
+    return array
 
-    # Recursively apply mergesort to both halves
-    left_half = mergesort(left_half)
-    right_half = mergesort(right_half)
-
-    # Merge the sorted halves
-    merged_array = merge(left_half, right_half)
-
-    return merged_array
-
-merge(left, right)
-    result = []
-    left_index = 0
-    right_index = 0
+merge(arr, low, high, end)
+    temp = []
+    left = low
+    right = mid + 1
 
     # Compare elements from left and right subarrays and merge
-    while left_index < length of left and right_index < length of right
+    while left_index <= mid element and right_index <= high element
         if left[left_index] <= right[right_index]
             append left[left_index] to result
             increment left_index
