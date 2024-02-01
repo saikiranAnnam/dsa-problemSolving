@@ -1,55 +1,43 @@
-#include<iostream>
-
+#include <iostream>
+#include <vector>
+#include <bits/stdc++.h> 
 using namespace std;
 
-int partition(vector<int> &arr, int low, int high) {
-    int pivot = arr[low];
-    int i = low;
-    int j = high;
-
-    while (i < j) {
-        while (arr[i] <= pivot && i <= high - 1) {
+vector<int> findArrayIntersection(std::vector<int> &arr1, int n, std::vector<int> &arr2, int m) {
+    int i = 0;
+    int j = 0;
+    vector<int> ans;
+    
+    while (i < n && j < m) {
+        if (arr1[i] < arr2[j]) {
             i++;
+        } else if (arr2[j] < arr1[i]) {
+            j++;
+        } else {
+            ans.push_back(arr1[i]);
+            i++;
+            j++;
         }
-
-        while (arr[j] > pivot && j >= low + 1) {
-            j--;
-        }
-        if (i < j) swap(arr[i], arr[j]);
     }
-    swap(arr[low], arr[j]);
-    return j;
+
+    return ans;
 }
 
-void qs(vector<int> &arr, int low, int high) {
-    if (low < high) {
-        int pIndex = partition(arr, low, high);
-        qs(arr, low, pIndex - 1);
-        qs(arr, pIndex + 1, high);
-    }
-}
+int main() {
+    // Provided Arrays
+    int arr1[] = {1, 2, 2, 3, 4};
+    int n = arr1.size();
+    vector<int> arr2 = {2, 2, 3, 3};
+    int m = arr2.size();
 
-vector<int> quickSort(vector<int> arr) {
-    qs(arr, 0, arr.size() - 1);
-    return arr;
-}
+    // Finding Intersection
+    vector<int> result = findArrayIntersection(arr1, n, arr2, m);
 
-int main()
-{
-    vector<int> arr = {4, 6, 2, 5, 7, 9, 1, 3};
-    int n = arr.size();
-    cout << "Before Using quick Sort: " << endl;
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
+    // Output: {2, 3}
+    cout << "Intersection: ";
+    for (int num : result) {
+        cout << num << " ";
     }
-    cout << endl;
 
-    arr = quickSort(arr);
-    cout << "After Using quick sort: " << "\n";
-    for (int i = 0; i < n; i++) {
-        cout << arr[i] << " ";
-    }
-    cout << "\n";
     return 0;
 }
