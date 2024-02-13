@@ -23,7 +23,7 @@ The length of the sequence is 5.
 **slove problem our own :** https://www.codingninjas.com/studio/problems/longest-successive-elements_6811740?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf
 
 **code:**
-
+```cpp
 int longestSuccessiveElements(vector<int>&a) {
     // Write your code here.
     int ans = 1;
@@ -43,5 +43,4 @@ int longestSuccessiveElements(vector<int>&a) {
     ans = max(ans, currLen);
     return ans;
 }
-
-
+```
