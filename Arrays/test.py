@@ -1,13 +1,18 @@
-def missingNumber(nums):
-    n = len(nums)
-    sum = 0 
-    sum = n*(n+1) // 2 ## 6
-    arr_sum = 0
-    for i in range(n):
-        arr_sum += nums[i] #
-    
-    ans = sum - arr_sum
-    return ans
-    
-nums = [3,0,1]
-print(nums)
+class Solution:
+    def maxArea(self , height: List[int]) -> int:
+        n = len(height)
+        left, right = 0, n-1
+        res = 0
+        while(left < right):
+            ar = min(height[left], height[right]) * (right - left)
+            res = max(res, ar)
+
+            if(height[l] > height[r]):
+                r-=1
+            else:
+                l+=1
+        
+        return res
+            
+
+
