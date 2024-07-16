@@ -2,16 +2,11 @@
 #include <vector>
 using namespace std;
 
-// defining your own data type -- custom data type
-// Node : data, address/reference
-// we can call it as object
-// constructors are used to intialize the objects
-// self define objects
 class Node
 {
 public:
     int data;
-    Node *next; // node* -- pointer
+    Node *next;
 
 public: // constructor
     Node(int data1, Node *next1)
@@ -28,54 +23,6 @@ public:
     }
 };
 
-// (2) -> (4) -> (6)
-class LinkedList
-{
-private:
-    Node *head;
-
-public:
-    LinkedList() // constructor the head to be null value
-    {
-        head = nullptr;
-    }
-
-    // methods to add a node at the beginning of the list
-    void insertFront(int data)
-    {
-        Node *newNode = new Node(data);
-        newNode->next = head;
-        head = newNode;
-    }
-
-    // traversing the linked List
-    void printList()
-    {
-        Node *temp = head;
-        while (temp != nullptr)
-        {
-            cout << temp->data << " -> ";
-            temp = temp->next;
-        }
-        cout << "nullptr" << endl;
-    }
-};
-
-int lengthOfLL(Node *head)
-{
-    int cnt = 0;
-    Node *temp = head;
-    while (temp != nullptr)
-    {
-        temp = temp->next;
-        cnt++;
-    }
-    return cnt;
-}
-
-// (head)node1 -> null
-// tempNode-> null
-//
 Node *convertArrtoLL(vector<int> &arr)
 {
     Node *head = new Node(arr[0]);
@@ -89,32 +36,99 @@ Node *convertArrtoLL(vector<int> &arr)
     return head;
 }
 
-int checkIfEleExist(Node *head, int val)
+void printLL(Node *head)
 {
+    while (head)
+    {
+
+        cout << head->data << " ";
+        head = head->next;
+    }
+}
+
+Node *insertEleHead(Node *head, int val)
+{
+    Node *temp = new Node(val, head);
+    return temp;
+}
+
+Node *insertEleTail(Node *head, int val)
+{
+    if (head == NULL)
+    {
+        return new Node(val);
+    }
     Node *temp = head;
     while (temp->next != nullptr)
     {
-        if (temp->data == val)
-        {
-            return 1;
-        }
         temp = temp->next;
     }
-    return 0;
+    Node *new_node = new Node(val);
+    temp->next = new_node;
+
+    return head;
 }
+
+Node *insertKpostion(Node *head, int k, int val)
+{
+    if (head == NULL)
+    {
+        if (k == 1)
+        {
+            return new Node(val);
+        }
+        else{
+            return head;
+        }
+    }
+    //insert at first postion
+    if(k == 1){
+        return new Node(val, head);
+    }
+    int cnt = 0;
+    Node *temp = head;
+    while(temp != NULL){
+        cnt++;
+        if(cnt == k-1){
+            Node *x = new Node(val,temp->next);
+            temp -> next = x;
+            break;
+        }
+        temp = temp -> next;
+    }
+    return head;
+}
+
+Node *insertBeforeValue(Node *head, int ele, int val)
+{
+    if (head == NULL)
+    {
+        if(head-> data == val){
+            return new Node (ele,head);
+        }
+    }
+    //insert at first postion
+    Node *temp = head;
+    while(temp-> next != NULL){
+        if(temp -> next -> data == ele){
+            Node *x = new Node(val,temp->next);
+            temp -> next = x;
+            break;
+        }
+        temp = temp -> next;
+    }
+    return head;
+}
+
 
 int main()
 {
-    vector<int> v1 = {9, 2, 4, 5, 12};
-    // LinkedList myList;
-    // for (int i = 0; i < v1.size(); ++i)
-    // {
-    //     myList.insertFront(v1[i]);
-    // }
-    // myList.printList();
+    vector<int> v1 = {3, 8, 9, 10};
     Node *head = convertArrtoLL(v1);
-    // cout << head->data;
-    cout<<checkIfEleExist(head, 13);
-    // cout << lengthOfLL(head);
+    printLL(head);
+    cout << endl;
+    // head = insertEleHead(head, 100);
+    head = insertBeforeValue(head,9, 7);
+    printLL(head);
     return 0;
 }
